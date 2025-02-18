@@ -11,7 +11,10 @@ namespace OrderProcessingApp.Controllers
         public IActionResult ProcessOrder(Order order)
         {
             if (!ModelState.IsValid)
+            {
                 return View("Index", order);
+            }
+
 
             return View("Result", order);
         }
