@@ -1,0 +1,31 @@
+﻿@model OrderProcessingApp.Models.Order
+@{
+    ViewData["Title"] = "Order Summary";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg">
+        <div class="card-header bg-success text-white text-center">
+            <h2>Order Summary</h2>
+        </div>
+        <div class="card-body">
+            <p class="fw-bold">Order Amount: <span class="text-primary">$@Model.Amount</span></p>
+            <p class="fw-bold">Customer Type: <span class="text-info">@Model.CustomerType</span></p>
+
+            @if (Model.CustomerType == "Loyal" && Model.Amount >= 100)
+            {
+                <p class="text-success">✅ Discount: 10% applied</p>
+                <p class="fw-bold">Final Total: <span class="text-danger">$@(Model.Amount * 0.9m)</span></p>
+            }
+            else
+            {
+                <p class="text-warning">⚠ No Discount Applied</p>
+                <p class="fw-bold">Final Total: <span class="text-danger">$@Model.FinalAmount</span></p>
+            }
+
+            <div class="mt-3">
+                <a asp-action="Index" class="btn btn-primary">🔙 Back to Order</a>
+            </div>
+        </div>
+    </div>
+</div>
